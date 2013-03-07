@@ -108,4 +108,26 @@ class Processor
 
         return $wordList;
     }
+
+    /**
+     * Combine all the words to a specified length.
+     *
+     * @param array $wordList
+     * @param int $length
+     * return array
+     */
+    public function combineWordsForLength(array $wordList, $length)
+    {
+        $combinedWords = array();
+
+        foreach ($wordList as $word) {
+            $remainingWords = $this->getWordsForLength($length - strlen($word));
+
+            foreach ($remainingWords as $remainingWord) {
+                $combinedWords[] = $word . $remainingWord;
+            }
+        }
+
+        return $combinedWords;
+    }
 }

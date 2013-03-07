@@ -75,4 +75,14 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
             }
         }
     }
+
+    public function test_it_combines_words_for_specific_length()
+    {
+        $length = 6;
+        $processor = new Processor($this->wordListFile);
+        $processor->loadList();
+        $wordList = $processor->getWordsWithinRange($length);
+
+        $combinedWords = $processor->combineWordsForLength($wordList, $length);
+    }
 }
