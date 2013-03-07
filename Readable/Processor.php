@@ -58,7 +58,7 @@ class Processor
      */
     public function loadList()
     {
-        $this->wordList = file($this->getWordListFile());
+        $this->wordList = file($this->getWordListFile(), FILE_IGNORE_NEW_LINES);
     }
 
     /**
