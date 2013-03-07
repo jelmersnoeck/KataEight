@@ -41,4 +41,21 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $processor->loadList();
         $this->assertNotEmpty($processor->getWordList());
     }
+
+    public function test_it_finds_words_within_range()
+    {
+        $range = 6;
+        $processor = new Processor($this->wordListFile);
+        $processor->loadList();
+
+        $wordList = $processor->getWordsWithinRange($range);
+
+        foreach ($wordList as $word) {
+            if (strlen($word) > 6 - 1) {
+                $this->assertTrue(
+                    false, "$word is longer than $range characters."
+                );
+            }
+        }
+    }
 }

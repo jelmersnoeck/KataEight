@@ -70,4 +70,23 @@ class Processor
     {
         return $this->wordList;
     }
+
+    /**
+     * Find words that contain less characters than the given value.
+     *
+     * @param int $range
+     * @return array
+     */
+    public function getWordsWithinRange($range)
+    {
+        $wordList = array();
+
+        foreach ($this->getWordList() as $word) {
+            if (strlen($word) < $range) {
+                $wordList[] = $word;
+            }
+        }
+
+        return $wordList;
+    }
 }
