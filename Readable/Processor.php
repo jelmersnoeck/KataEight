@@ -26,6 +26,13 @@ class Processor
     protected $wordListFile;
 
     /**
+     * The actual word list, containing all the words.
+     *
+     * @var array
+     */
+    protected $wordList = array();
+
+    /**
      * Initiate the processor class and pass through the file path.
      *
      * @param string $wordListFile
@@ -43,5 +50,24 @@ class Processor
     public function getWordListFile()
     {
         return $this->wordListFile;
+    }
+
+    /**
+     * Load the current file into memory. We'll later go trough this list to
+     * combine the words.
+     */
+    public function loadList()
+    {
+        $this->wordList = file($this->getWordListFile());
+    }
+
+    /**
+     * Retrieve the word list we've stored into memory.
+     *
+     * @return array
+     */
+    public function getWordList()
+    {
+        return $this->wordList;
     }
 }

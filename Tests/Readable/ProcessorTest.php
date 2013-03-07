@@ -32,4 +32,13 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $processor = new Processor($this->wordListFile);
         $this->assertSame($this->wordListFile, $processor->getWordListFile());
     }
+
+    public function test_it_loads_list_of_words_to_memory()
+    {
+        $processor = new Processor($this->wordListFile);
+        $this->assertEmpty($processor->getWordList());
+
+        $processor->loadList();
+        $this->assertNotEmpty($processor->getWordList());
+    }
 }
