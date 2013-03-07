@@ -84,5 +84,13 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $wordList = $processor->getWordsWithinRange($length);
 
         $combinedWords = $processor->combineWordsForLength($wordList, $length);
+
+        foreach ($combinedWords as $word) {
+            if (strlen($word) != $length) {
+                $this->assertTrue(
+                    false, "$word is not $length characters long."
+                );
+            }
+        }
     }
 }
