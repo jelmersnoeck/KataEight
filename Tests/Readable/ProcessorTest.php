@@ -70,7 +70,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         foreach ($wordList as $word) {
             if (strlen($word) != $length) {
                 $this->assertTrue(
-                    false, "$word is not $range characters long."
+                    false, "$word is not $length characters long."
                 );
             }
         }
