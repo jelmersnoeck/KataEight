@@ -130,4 +130,28 @@ class Processor
 
         return $combinedWords;
     }
+
+    /**
+     * Process the file we've initiated this object with and retrieve all the
+     * combined words that have a specific length.
+     *
+     * @param int $length
+     * @return array
+     */
+    public function getCombinedWordsForLength($length)
+    {
+        $this->loadList();
+        $combinedWords = $this->combineWordsForLength(
+            $this->getWordsWithinRange($length), $length
+        );
+        $validWords = array();
+
+        foreach ($combinedWords as $word) {
+            if (in_array($word, $this->getWordList())) {
+                $validWords[] = $word;
+            }
+        }
+
+        return $validWords;
+    }
 }
