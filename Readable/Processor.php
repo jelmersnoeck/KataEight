@@ -17,4 +17,31 @@ namespace JelmerSnoeck\KataEight\Readable;
  */
 class Processor
 {
+    /**
+     * The wordlist file the processor will be using to generate the
+     * combinations.
+     *
+     * @var string
+     */
+    protected $wordListFile;
+
+    /**
+     * Initiate the processor class and pass through the file path.
+     *
+     * @param string $wordListFile
+     */
+    public function __construct($wordListFile)
+    {
+        $this->wordListFile = (string) $wordListFile;
+    }
+
+    /**
+     * Retrieve the word list file we're using for this processor.
+     *
+     * @return string
+     */
+    public function getWordListFile()
+    {
+        return $this->wordListFile;
+    }
 }
