@@ -16,7 +16,7 @@
         "php": ">=5.4.11"
     },
     "autoload": {
-        "psr-0": { "JelmerSnoeck\\KataEight": "" }
+        "psr-0": { "JelmerSnoeck\\KataEight": "src/" }
     },
     "target-dir": "JelmerSnoeck/KataEight"
 }
