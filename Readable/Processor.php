@@ -89,4 +89,23 @@ class Processor
 
         return $wordList;
     }
+
+    /**
+     * Retrieve a set of words that match a specific length.
+     *
+     * @param int $length
+     * @return array
+     */
+    public function getWordsForLength($length)
+    {
+        $wordList = array();
+
+        foreach ($this->getWordList() as $word) {
+            if (strlen($word) == $length) {
+                $wordList[] = $word;
+            }
+        }
+
+        return $wordList;
+    }
 }

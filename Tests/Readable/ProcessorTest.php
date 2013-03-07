@@ -58,4 +58,21 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
             }
         }
     }
+
+    public function test_it_finds_words_for_specific_length()
+    {
+        $length = 3;
+        $processor = new Processor($this->wordListFile);
+        $processor->loadList();
+
+        $wordList = $processor->getWordsForLength($length);
+
+        foreach ($wordList as $word) {
+            if (strlen($word) != $length) {
+                $this->assertTrue(
+                    false, "$word is not $range characters long."
+                );
+            }
+        }
+    }
 }
