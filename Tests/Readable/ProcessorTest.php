@@ -24,7 +24,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->wordListFile = __DIR__ . '/../Fixtures/wordlist';
+        $this->wordListFile = __DIR__ . '/../Fixtures/testlist';
     }
 
     public function test_it_stores_wordlist_file()
