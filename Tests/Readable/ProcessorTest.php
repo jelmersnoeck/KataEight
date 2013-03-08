@@ -100,6 +100,6 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $wordList = $processor->getCombinedWordsForLength(6);
 
         $this->assertNotEmpty($wordList);
-        $this->assertSame(14435, count($wordList));
+        $this->assertSame(5, count($wordList));
     }
 }
