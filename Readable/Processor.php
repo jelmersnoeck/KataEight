@@ -98,14 +98,19 @@ class Processor
      */
     public function getWordsForLength($length)
     {
-        $wordList = array();
+        static $lengthWords = array();
+        if (isset($lengthWords[$length])) {
+            return $lengthWords[$length];
+        }
 
+        $wordList = array();
         foreach ($this->getWordList() as $word) {
             if (strlen($word) == $length) {
                 $wordList[] = $word;
             }
         }
 
+        $lengthWords[$length] = $wordList;
         return $wordList;
     }
 
@@ -146,8 +151,13 @@ class Processor
         );
         $validWords = array();
 
+        // I've done some optimization here already. This is required due to the
+        // fact that arrays(hashmaps) in php are really slow. Without this
+        // optimization it would take a really long time(~30 min) to run this
+        // check.
+        $wordList = array_flip($this->getWordList());
         foreach ($combinedWords as $word) {
-            if (in_array($word, $this->getWordList())) {
+            if (isset($wordList[$word])) {
                 $validWords[] = $word;
             }
         }

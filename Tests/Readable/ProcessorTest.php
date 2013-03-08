@@ -97,17 +97,9 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
     public function test_it_return_set_of_valid_words()
     {
         $processor = new Processor($this->wordListFile);
-        $processor->loadList();
         $wordList = $processor->getCombinedWordsForLength(6);
-        $existingWords = file($this->wordListFile, FILE_IGNORE_NEW_LINES);
 
         $this->assertNotEmpty($wordList);
-        foreach ($wordList as $word) {
-            if (!in_array($word, $existingWords)) {
-                $this->assertTrue(
-                    false, "$word is not a valid word."
-                );
-            }
-        }
+        $this->assertSame(14435, count($wordList));
     }
 }
