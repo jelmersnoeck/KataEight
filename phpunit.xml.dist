@@ -11,6 +11,8 @@
     <filter>
         <whitelist>
             <directory>./</directory>
+            <directory>./Tests</directory>
+            <directory>./vendor</directory>
         </whitelist>
     </filter>
 </phpunit>
