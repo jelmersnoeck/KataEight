@@ -24,7 +24,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->wordListFile = __DIR__ . '/../Fixtures/wordlist';
+        $this->wordListFile = __DIR__ . '/../Fixtures/testlist';
         $this->wordLength = 6;
     }
 
@@ -62,5 +62,33 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEmpty($wordList[4]);
         $this->assertArrayHasKey(5, $wordList);
         $this->assertNotEmpty($wordList[5]);
+    }
+
+    public function test_it_finds_words_for_length()
+    {
+        $length = 3;
+        $processor = new Processor($this->wordListFile, $this->wordLength);
+        $processor->loadList();
+
+        $wordList = $processor->getWordsForLength($length);
+
+        // the words are stored as key, which is faster.
+        foreach ($wordList as $word => $value) {
+            if (strlen($word) != $length) {
+                $this->assertTrue(
+                    false, "'$word' is not $length characters long."
+                );
+            }
+        }
+    }
+
+    public function test_it_combines_set_of_valid_words()
+    {
+        $processor = new Processor($this->wordListFile, $this->wordLength);
+        $processor->loadList();
+
+        $wordList = $processor->getWordsForLength(2);
+        $combinedWords = $processor->createValidWordsForList($wordList, 4);
+        $this->assertSame(2, count($combinedWords));
     }
 }
