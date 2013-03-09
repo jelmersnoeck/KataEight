@@ -101,7 +101,7 @@ class Processor
      */
     public function loadList()
     {
-        $this->wordList = array_fill(0, $this->getWordLength(), array());
+        $this->wordList = array_fill(1, $this->getWordLength(), array());
 
         $handle = fopen($this->GetWordListfile(), "r");
         while (!feof($handle)) {
