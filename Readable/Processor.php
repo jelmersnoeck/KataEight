@@ -137,6 +137,17 @@ class Processor
     }
 
     /**
+     * A wrapper function that removes duplicate values from an array.
+     *
+     * @param array $values
+     * @return array
+     */
+    public function removeDuplicates(array $values)
+    {
+        return array_keys(array_flip($values));
+    }
+
+    /**
      * Process the file we've initiated this object with and retrieve all the
      * combined words that have a specific length.
      *
@@ -163,6 +174,6 @@ class Processor
         }
 
         // filter out double results
-        return array_keys(array_flip($validWords));
+        return $this->removeDuplicates($validWords);
     }
 }

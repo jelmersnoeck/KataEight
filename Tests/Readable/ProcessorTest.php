@@ -24,7 +24,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->wordListFile = __DIR__ . '/../Fixtures/wordlist';
+        $this->wordListFile = __DIR__ . '/../Fixtures/testlist';
     }
 
     public function test_it_stores_wordlist_file()
@@ -92,6 +92,14 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
                 );
             }
         }
+    }
+
+    public function test_it_removes_duplicate_entries()
+    {
+        $processor = new Processor($this->wordListFile);
+        $duplicates = array('example', 'example');
+
+        $this->assertSame(1, count($processor->removeDuplicates($duplicates)));
     }
 
     public function test_it_return_set_of_valid_words()
