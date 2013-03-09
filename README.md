@@ -2,6 +2,8 @@
 This is the solution for "Kata Eight: Conflicting Objectives", which can be
 found [here](http://codekata.pragprog.com/2007/01/kata_eight_conf.html).
 
+[![Build Status](https://travis-ci.org/jelmersnoeck/KataEight.png?branch=master)](https://travis-ci.org/jelmersnoeck/KataEight)
+
 ## Installation
 Build the autoload file and - if wanted - install PHPUnit:
 
@@ -52,38 +54,38 @@ Fast Processor.
 ## Benchmarks
 The benchmarks are made on a Macbook Air, 1.7GHz Intel Core i5, 4GB DD3 @1333
 
-* Starting benchmark for the Readable Processor.
-* Starting run 1
-* Ending run 1: 5.9200100898743s
-* Starting run 2
-* Ending run 2: 5.6041250228882s
-* Starting run 3
-* Ending run 3: 5.5342519283295s
-* Starting run 4
-* Ending run 4: 5.844260931015s
-* Starting run 5
-* Ending run 5: 5.49742603302s
+Starting benchmark for the Readable Processor.  
+Starting run 1  
+Ending run 1: 5.9200100898743s  
+Starting run 2  
+Ending run 2: 5.6041250228882s  
+Starting run 3  
+Ending run 3: 5.5342519283295s  
+Starting run 4  
+Ending run 4: 5.844260931015s  
+Starting run 5  
+Ending run 5: 5.49742603302s  
 
-* Starting benchmark for the Fast Processor.
-* Starting run 1
-* Ending run 1: 1.9709739685059s
-* Starting run 2
-* Ending run 2: 1.9630129337311s
-* Starting run 3
-* Ending run 3: 2.019257068634s
-* Starting run 4
-* Ending run 4: 2.0069499015808s
-* Starting run 5
-* Ending run 5: 2.0208330154419s
+Starting benchmark for the Fast Processor.  
+Starting run 1  
+Ending run 1: 1.9709739685059s  
+Starting run 2  
+Ending run 2: 1.9630129337311s  
+Starting run 3  
+Ending run 3: 2.019257068634s  
+Starting run 4  
+Ending run 4: 2.0069499015808s  
+Starting run 5  
+Ending run 5: 2.0208330154419s  
 
-* Starting benchmark for the Extendible Processor.
-* Starting run 1
-* Ending run 1: 2.0131740570068s
-* Starting run 2
-* Ending run 2: 2.0065979957581s
-* Starting run 3
-* Ending run 3: 2.0287590026855s
-* Starting run 4
-* Ending run 4: 2.0243620872498s
-* Starting run 5
-* Ending run 5: 2.0387260913849s
+Starting benchmark for the Extendible Processor.  
+Starting run 1  
+Ending run 1: 2.0131740570068s  
+Starting run 2  
+Ending run 2: 2.0065979957581s  
+Starting run 3  
+Ending run 3: 2.0287590026855s  
+Starting run 4  
+Ending run 4: 2.0243620872498s  
+Starting run 5  
+Ending run 5: 2.0387260913849s  
