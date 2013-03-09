@@ -25,11 +25,13 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->wordListFile = __DIR__ . '/../Fixtures/testlist';
+        $this->wordLength = 6;
     }
 
     public function test_it_stores_wordlist_file()
     {
-        $processor = new Processor($this->wordListFile);
+        $processor = new Processor($this->wordListFile, $this->wordLength);
         $this->assertSame($this->wordListFile, $processor->getWordListFile());
+        $this->assertSame($this->wordLength, $processor->getWordLength());
     }
 }

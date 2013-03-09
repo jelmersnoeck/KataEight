@@ -18,6 +18,13 @@ namespace JelmerSnoeck\KataEight\Fast;
 class Processor
 {
     /**
+     * The length the combined words should be.
+     *
+     * @var int
+     */
+    protected $wordLength;
+
+    /**
      * The file we'll be using to process the data.
      *
      * @var string
@@ -25,13 +32,26 @@ class Processor
     protected $wordListFile;
 
     /**
-     * Initiate the processor with the file to process.
+     * Initiate the processor with the file to process and the maximum length
+     * the combined words should be.
      *
      * @param string $wordListFile
+     * @param int $wordLength
      */
-    public function __construct($wordListFile)
+    public function __construct($wordListFile, $wordLength)
     {
         $this->wordListFile = (string) $wordListFile;
+        $this->wordLength = (int) $wordLength;
+    }
+
+    /**
+     * Retrieve the length that will be used to combine the words.
+     *
+     * @return int
+     */
+    public function getWordLength()
+    {
+        return $this->wordLength;
     }
 
     /**
