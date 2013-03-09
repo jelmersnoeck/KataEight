@@ -117,4 +117,27 @@ class Processor
 
         return $wordList;
     }
+
+    /**
+     * Combine all the words in our word set and find the valid words that are
+     * of a specific length.
+     *
+     * @param int $wordLength
+     * @return array
+     */
+    public function getValidCombinedWords($wordLength)
+    {
+        $this->loadList($wordLength);
+        $validWords = array();
+        foreach ($this->getWordList() as $length => $words) {
+            if ($length > $wordLength - $length) {
+                break;
+            }
+
+            $validWords += $this->createValidWordsForList(
+                $words, $wordLength - $length);
+        }
+
+        return $validWords;
+    }
 }

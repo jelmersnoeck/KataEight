@@ -10,6 +10,7 @@
 namespace JelmerSnoeck\KataEight\Tests\Extendible;
 
 use JelmerSnoeck\KataEight\Extendible\Processor;
+use JelmerSnoeck\KataEight\Extendible\FileProvider;
 
 /**
  * Here we'll see how the extendible processor is working.
@@ -96,5 +97,14 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
             array('albums' => true, 'hereby' => true),
             $combinedWords
         );
+    }
+
+    public function test_it_returns_all_combined_valid_words()
+    {
+        $provider = new FileProvider(__DIR__ . '/../Fixtures/testlist');
+        $processor = new Processor($provider);
+
+        $wordList = $processor->getValidCombinedWords(6);
+        $this->assertSame(5, count($wordList));
     }
 }
