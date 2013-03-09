@@ -75,4 +75,26 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
             $processor->getWordsForLength($length)
         );
     }
+
+    public function test_it_combines_set_of_valid_words()
+    {
+        $this->dataList->expects($this->once())->method('getWordsForLength')
+            ->with(4)->will($this->returnValue(array(
+                'bums' => true, 'here' => true,
+            )));
+        $this->dataList->expects($this->once())->method('getValidWords')
+            ->will($this->returnValue(array(
+                'albums' => true, 'hereby' => true,
+            )));
+
+        $processor = new Processor($this->dataList);
+        $processor->loadList(6);
+
+        $combinedWords = $processor->createValidWordsForList(
+            array('al' => true, 'by' => true), 4);
+        $this->assertSame(
+            array('albums' => true, 'hereby' => true),
+            $combinedWords
+        );
+    }
 }

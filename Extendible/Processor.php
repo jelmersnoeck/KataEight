@@ -88,4 +88,33 @@ class Processor
     {
         return $this->getDataProvider()->getWordsForLength($length);
     }
+
+    /**
+     * Create a list of valid words for a given list. This means we'll go
+     * through each word, check the length and append all the matching length
+     * words to it. If it is a valid word, store it.
+     *
+     * @param array $firstList
+     * @return array
+     */
+    public function createValidWordsForList(array $firstList, $remainingLength)
+    {
+        $wordList = array();
+        $validWords = $this->getValidWords();
+
+        $remainingWords = $this->getWordsForLength($remainingLength);
+        foreach ($firstList as $word => $value) {
+            foreach ($remainingWords as $rWord => $value) {
+                if (isset($validWords[$word . $rWord])) {
+                    $wordList[$word . $rWord] = true;
+                }
+
+                if (isset($validWords[$rWord . $word])) {
+                    $wordList[$rWord . $word] = true;
+                }
+            }
+        }
+
+        return $wordList;
+    }
 }
