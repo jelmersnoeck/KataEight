@@ -18,13 +18,6 @@ namespace JelmerSnoeck\KataEight\Fast;
 class Processor
 {
     /**
-     * The length the combined words should be.
-     *
-     * @var int
-     */
-    protected $wordLength;
-
-    /**
      * The file we'll be using to process the data.
      *
      * @var string
@@ -50,22 +43,10 @@ class Processor
      * the combined words should be.
      *
      * @param string $wordListFile
-     * @param int $wordLength
      */
-    public function __construct($wordListFile, $wordLength)
+    public function __construct($wordListFile)
     {
         $this->wordListFile = (string) $wordListFile;
-        $this->wordLength = (int) $wordLength;
-    }
-
-    /**
-     * Retrieve the length that will be used to combine the words.
-     *
-     * @return int
-     */
-    public function getWordLength()
-    {
-        return $this->wordLength;
     }
 
     /**
@@ -99,13 +80,13 @@ class Processor
      *  ...
      * )
      */
-    public function loadList()
+    public function loadList($length)
     {
         $fileData = file($this->getWordListFile(), FILE_IGNORE_NEW_LINES);
         foreach ($fileData as $word) {
-            if (strlen($word) < $this->getWordLength() && !empty($word)) {
+            if (strlen($word) < $length && !empty($word)) {
                 $this->wordList[strlen($word)][$word] = true;
-            } elseif (strlen($word) == $this->getWordLength()) {
+            } elseif (strlen($word) == $length) {
                 $this->validWords[$word] = true;
             }
         }
@@ -177,21 +158,23 @@ class Processor
     }
 
     /**
-     * Combine all the words in our word set and find the valid words.
+     * Combine all the words in our word set and find the valid words that are
+     * of a specific length.
      *
+     * @param int $wordLength
      * @return array
      */
-    public function getValidCombinedWords()
+    public function getValidCombinedWords($wordLength)
     {
-        $this->loadList();
+        $this->loadList($wordLength);
         $validWords = array();
         foreach ($this->getWordList() as $length => $words) {
-            if ($length > $this->getWordLength() - $length) {
+            if ($length > $wordLength - $length) {
                 break;
             }
 
             $validWords += $this->createValidWordsForList(
-                $words, $this->getWordLength() - $length);
+                $words, $wordLength - $length);
         }
 
         return $validWords;

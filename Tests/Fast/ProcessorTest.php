@@ -25,31 +25,29 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->wordListFile = __DIR__ . '/../Fixtures/testlist';
-        $this->wordLength = 6;
     }
 
     public function test_it_stores_wordlist_file()
     {
-        $processor = new Processor($this->wordListFile, $this->wordLength);
+        $processor = new Processor($this->wordListFile);
         $this->assertSame($this->wordListFile, $processor->getWordListFile());
-        $this->assertSame($this->wordLength, $processor->getWordLength());
     }
 
     public function test_it_loads_words_to_memory()
     {
-        $processor = new Processor($this->wordListFile, $this->wordLength);
+        $processor = new Processor($this->wordListFile);
         $this->assertEmpty($processor->getWordList());
         $this->assertEmpty($processor->getValidWords());
 
-        $processor->loadList();
+        $processor->loadList(6);
         $this->assertNotEmpty($processor->getWordList());
         $this->assertNotEmpty($processor->getValidWords());
     }
 
     public function test_it_sorts_loaded_words()
     {
-        $processor = new Processor($this->wordListFile, $this->wordLength);
-        $processor->loadList();
+        $processor = new Processor($this->wordListFile);
+        $processor->loadList(6);
         $wordList = $processor->getWordList();
 
         $this->assertArrayHasKey(1, $wordList);
@@ -67,8 +65,8 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
     public function test_it_finds_words_for_length()
     {
         $length = 3;
-        $processor = new Processor($this->wordListFile, $this->wordLength);
-        $processor->loadList();
+        $processor = new Processor($this->wordListFile);
+        $processor->loadList(3);
 
         $wordList = $processor->getWordsForLength($length);
 
@@ -84,8 +82,8 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_combines_set_of_valid_words()
     {
-        $processor = new Processor($this->wordListFile, $this->wordLength);
-        $processor->loadList();
+        $processor = new Processor($this->wordListFile);
+        $processor->loadList(6);
 
         $wordList = $processor->getWordsForLength(2);
         $combinedWords = $processor->createValidWordsForList($wordList, 4);
@@ -96,9 +94,9 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
 
     public function test_it_returns_all_combined_valid_words()
     {
-        $processor = new Processor($this->wordListFile, $this->wordLength);
+        $processor = new Processor($this->wordListFile);
 
-        $wordList = $processor->getValidCombinedWords();
+        $wordList = $processor->getValidCombinedWords(6);
         $this->assertSame(5, count($wordList));
         // testlist 5
         // wordlist 10799
