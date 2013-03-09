@@ -79,6 +79,8 @@ class Processor
      *  'word' => true,
      *  ...
      * )
+     *
+     * @param int $length
      */
     public function loadList($length)
     {
