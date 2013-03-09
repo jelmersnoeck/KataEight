@@ -101,22 +101,14 @@ class Processor
      */
     public function loadList()
     {
-        $this->wordList = array_fill(1, $this->getWordLength(), array());
-
-        $handle = fopen($this->GetWordListfile(), "r");
-        while (!feof($handle)) {
-            $word = trim(fgets($handle));
-
+        $fileData = file($this->getWordListFile(), FILE_IGNORE_NEW_LINES);
+        foreach ($fileData as $word) {
             if (strlen($word) < $this->getWordLength() && !empty($word)) {
                 $this->wordList[strlen($word)][$word] = true;
             } elseif (strlen($word) == $this->getWordLength()) {
                 $this->validWords[$word] = true;
             }
-
-            unset($word);
         }
-
-        fclose($handle);
     }
 
     /**
