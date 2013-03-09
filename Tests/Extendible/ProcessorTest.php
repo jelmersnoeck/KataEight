@@ -23,14 +23,14 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->dataList = $this->getMock(
-            'JelmerSnoeck\KataEight\Extendible\DataList'
+            'JelmerSnoeck\KataEight\Extendible\DataProvider'
         );
     }
 
     public function test_it_stores_data_list_object()
     {
         $processor = new Processor($this->dataList);
-        $this->assertSame($this->dataList, $processor->getDataList());
+        $this->assertSame($this->dataList, $processor->getDataProvider());
     }
 
     public function test_it_loads_list_from_data_list()

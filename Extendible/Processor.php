@@ -9,7 +9,7 @@
 
 namespace JelmerSnoeck\KataEight\Extendible;
 
-use JelmerSnoeck\KataEight\Extendible\DataList;
+use JelmerSnoeck\KataEight\Extendible\DataProvider;
 
 /**
  * This class illustrates the extendible way of writing this program. It is
@@ -20,72 +20,72 @@ use JelmerSnoeck\KataEight\Extendible\DataList;
 class Processor
 {
     /**
-     * The DataList object we'll be using to grab our data from.
+     * The DataProvider object we'll be using to grab our data from.
      *
-     * @var DataList
+     * @var DataProvider
      */
-    protected $dataList;
+    protected $dataProvider;
 
     /**
-     * Initiate the processor. Here we take a DataList object that we can
+     * Initiate the processor. Here we take a DataProvider object that we can
      * properly parse.
      *
-     * @param DataList $dataList
+     * @param DataProvider $dataProvider
      */
-    public function __construct(DataList $dataList)
+    public function __construct(DataProvider $dataProvider)
     {
-        $this->dataList = $dataList;
+        $this->dataProvider = $dataProvider;
     }
 
     /**
-     * Retrieve the DataList we're using to read data from.
+     * Retrieve the DataProvider we're using to read data from.
      *
-     * @return DataList
+     * @return DataProvider
      */
-    public function getDataList()
+    public function getDataProvider()
     {
-        return $this->dataList;
+        return $this->dataProvider;
     }
 
     /**
-     * Load all the words from a specific length from our DataList provider.
+     * Load all the words from a specific length from our DataProvider.
      *
      * @param int $length
      */
     public function loadList($length)
     {
-        $this->getDataList()->loadList($length);
+        $this->getDataProvider()->loadList($length);
     }
 
     /**
-     * Fetch a list of words that we've loaded from our DataList.
+     * Fetch a list of words that we've loaded from our DataProvider.
      *
      * @return array
      */
     public function getWordList()
     {
-        return $this->getDataList()->getWordList();
+        return $this->getDataProvider()->getWordList();
     }
 
     /**
-     * Fetch all the valid words that we've loaded from the DataList provider.
+     * Fetch all the valid words that we've loaded from the DataProvider.
      *
      * @return array
      */
     public function getValidWords()
     {
-        return $this->getDataList()->getValidWords();
+        return $this->getDataProvider()->getValidWords();
     }
 
     /**
      * Retrieve a set of words with a specific length that we've loaded from the
-     * DataList provider.
+     * DataProvider.
      *
      * @param int $length
      * @return array
      */
     public function getWordsForLength($length)
     {
-        return $this->getDataList()->getWordsForLength($length);
+        return $this->getDataProvider()->getWordsForLength($length);
     }
 }

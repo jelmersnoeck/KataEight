@@ -10,12 +10,12 @@
 namespace JelmerSnoeck\KataEight\Extendible;
 
 /**
- * The DataList interface which provides a uniform way to load the data we need
+ * The DataProvider interface which provides a uniform way to load the data we need
  * to execute the processing action.
  *
  * @author Jelmer Snoeck <jelmer@siphoc.com>
  */
-interface DataList
+interface DataProvider
 {
     /**
      * Load all the words within a provided length.
