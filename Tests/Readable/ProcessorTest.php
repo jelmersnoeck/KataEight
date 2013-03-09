@@ -32,6 +32,14 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->wordListFile, $processor->getWordListFile());
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function test_it_errors_on_non_existing_file()
+    {
+        $processor = new Processor('non_existing_file');
+    }
+
     public function test_it_loads_list_of_words_to_memory()
     {
         $processor = new Processor($this->wordListFile);

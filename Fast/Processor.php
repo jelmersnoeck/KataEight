@@ -46,6 +46,12 @@ class Processor
      */
     public function __construct($wordListFile)
     {
+        if (!file_exists($wordListFile)) {
+            throw new \InvalidArgumentException(
+                "The file($wordListFile) does not exist."
+            );
+        }
+
         $this->wordListFile = (string) $wordListFile;
     }
 
