@@ -24,7 +24,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->wordListFile = __DIR__ . '/../Fixtures/testlist';
+        $this->wordListFile = __DIR__ . '/../Fixtures/wordlist';
     }
 
     public function test_it_stores_wordlist_file()
@@ -101,6 +101,6 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNotEmpty($wordList);
         $this->assertSame(5, count($wordList));
-        // 14435 with wordlist
+        // 10799 with wordlist
     }
 }

@@ -162,6 +162,7 @@ class Processor
             }
         }
 
-        return $validWords;
+        // filter out double results
+        return array_keys(array_flip($validWords));
     }
 }
