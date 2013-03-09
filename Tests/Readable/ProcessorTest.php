@@ -101,6 +101,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNotEmpty($wordList);
         $this->assertSame(5, count($wordList));
-        // 10799 with wordlist
+        // testlist 5
+        // wordlist 10799
     }
 }
