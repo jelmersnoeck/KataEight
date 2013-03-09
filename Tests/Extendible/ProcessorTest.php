@@ -7,7 +7,7 @@
  * @link      http://siphoc.com
  */
 
-namespace JelmerSnoeck\KataEight\Tests\Readable;
+namespace JelmerSnoeck\KataEight\Tests\Extendible;
 
 use JelmerSnoeck\KataEight\Extendible\Processor;
 
@@ -31,5 +31,48 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
     {
         $processor = new Processor($this->dataList);
         $this->assertSame($this->dataList, $processor->getDataList());
+    }
+
+    public function test_it_loads_list_from_data_list()
+    {
+        $length = 6;
+
+        $this->dataList->expects($this->once())
+            ->method('loadList')->with($length);
+
+        $processor = new Processor($this->dataList);
+        $processor->loadList($length);
+    }
+
+    public function test_it_gets_word_list()
+    {
+        $this->dataList->expects($this->once())
+            ->method('getWordList')->will($this->returnValue('wordList'));
+
+        $processor = new Processor($this->dataList);
+        $this->assertSame('wordList', $processor->getWordList());
+    }
+
+    public function test_it_gets_valid_words()
+    {
+        $this->dataList->expects($this->once())
+            ->method('getValidWords')->will($this->returnValue('validWords'));
+
+        $processor = new Processor($this->dataList);
+        $this->assertSame('validWords', $processor->getValidWords());
+    }
+
+    public function test_it_gets_words_for_length()
+    {
+        $length = 6;
+        $this->dataList->expects($this->once())
+            ->method('getWordsForLength')->with($length)
+            ->will($this->returnValue('wordsForLength'));
+
+        $processor = new Processor($this->dataList);
+        $this->assertSame(
+            'wordsForLength',
+            $processor->getWordsForLength($length)
+        );
     }
 }
