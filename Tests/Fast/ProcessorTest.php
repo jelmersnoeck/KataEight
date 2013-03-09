@@ -89,6 +89,18 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
 
         $wordList = $processor->getWordsForLength(2);
         $combinedWords = $processor->createValidWordsForList($wordList, 4);
-        $this->assertSame(2, count($combinedWords));
+        $this->assertSame(3, count($combinedWords));
+        // testlist 3
+        // wordlist 6034
+    }
+
+    public function test_it_returns_all_combined_valid_words()
+    {
+        $processor = new Processor($this->wordListFile, $this->wordLength);
+
+        $wordList = $processor->getValidCombinedWords();
+        $this->assertSame(5, count($wordList));
+        // testlist 5
+        // wordlist 10799
     }
 }

@@ -174,9 +174,34 @@ class Processor
                 if (isset($validWords[$word . $rWord])) {
                     $wordList[$word . $rWord] = true;
                 }
+
+                if (isset($validWords[$rWord . $word])) {
+                    $wordList[$rWord . $word] = true;
+                }
             }
         }
 
         return $wordList;
+    }
+
+    /**
+     * Combine all the words in our word set and find the valid words.
+     *
+     * @return array
+     */
+    public function getValidCombinedWords()
+    {
+        $this->loadList();
+        $validWords = array();
+        foreach ($this->getWordList() as $length => $words) {
+            if ($length > $this->getWordLength() - $length) {
+                break;
+            }
+
+            $validWords += $this->createValidWordsForList(
+                $words, $this->getWordLength() - $length);
+        }
+
+        return $validWords;
     }
 }
