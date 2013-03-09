@@ -11,10 +11,11 @@
     <filter>
         <whitelist>
             <directory>./</directory>
+            <exclude>
+                <directory>./Tests</directory>
+                <directory>./vendor</directory>
+                <file>benchmark.php</file>
+            </exclude>
         </whitelist>
-        <exclude>
-            <directory>./Tests</directory>
-            <directory>./vendor</directory>
-        </exclude>
     </filter>
 </phpunit>
