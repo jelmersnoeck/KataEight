@@ -24,7 +24,7 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->wordListFile = __DIR__ . '/../Fixtures/testlist';
+        $this->wordListFile = __DIR__ . '/../Fixtures/wordlist';
         $this->wordLength = 6;
     }
 
@@ -33,5 +33,34 @@ class ProcessorTest extends \PHPUnit_Framework_TestCase
         $processor = new Processor($this->wordListFile, $this->wordLength);
         $this->assertSame($this->wordListFile, $processor->getWordListFile());
         $this->assertSame($this->wordLength, $processor->getWordLength());
+    }
+
+    public function test_it_loads_words_to_memory()
+    {
+        $processor = new Processor($this->wordListFile, $this->wordLength);
+        $this->assertEmpty($processor->getWordList());
+        $this->assertEmpty($processor->getValidWords());
+
+        $processor->loadList();
+        $this->assertNotEmpty($processor->getWordList());
+        $this->assertNotEmpty($processor->getValidWords());
+    }
+
+    public function test_it_sorts_loaded_words()
+    {
+        $processor = new Processor($this->wordListFile, $this->wordLength);
+        $processor->loadList();
+        $wordList = $processor->getWordList();
+
+        $this->assertArrayHasKey(1, $wordList);
+        $this->assertNotEmpty($wordList[1]);
+        $this->assertArrayHasKey(2, $wordList);
+        $this->assertNotEmpty($wordList[2]);
+        $this->assertArrayHasKey(3, $wordList);
+        $this->assertNotEmpty($wordList[3]);
+        $this->assertArrayHasKey(4, $wordList);
+        $this->assertNotEmpty($wordList[4]);
+        $this->assertArrayHasKey(5, $wordList);
+        $this->assertNotEmpty($wordList[5]);
     }
 }
