@@ -2,6 +2,26 @@
 This is the solution for "Kata Eight: Conflicting Objectives", which can be
 found [here](http://codekata.pragprog.com/2007/01/kata_eight_conf.html).
 
+## Installation
+Build the autoload file and - if wanted - install PHPUnit:
+
+    composer.phar install --dev
+
+### Run the benchmarks
+To run the benchmarks, simply execute the following code:
+
+    php benchmark.php
+
+This benchmark uses the wordlist file, which contains 235886 words.
+
+### Tests
+To run the tests, run the following code:
+
+    ./vendor/bin/phpunit
+
+Note that the tests do not use the actual wordlist file but the testfile which
+contains 656 words.
+
 ## Readable solution
 For the readable solution I've tried to seperate each step and make it as clear
 as possible what the logic is behind that process. I've added some minor
