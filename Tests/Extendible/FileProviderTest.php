@@ -39,4 +39,33 @@ class FileProviderTest extends \PHPUnit_Framework_TestCase
     {
         $provider = new FileProvider('non_existing_file');
     }
+
+    public function test_it_loads_words_to_memory()
+    {
+        $provider = new FileProvider($this->filePath);
+        $this->assertEmpty($provider->getWordList());
+        $this->assertEmpty($provider->getValidWords());
+
+        $provider->loadList(6);
+        $this->assertNotEmpty($provider->getWordList());
+        $this->assertNotEmpty($provider->getValidWords());
+    }
+
+    public function test_it_finds_words_for_length()
+    {
+        $length = 3;
+        $provider = new FileProvider($this->filePath);
+        $provider->loadList(3);
+
+        $wordList = $provider->getWordsForLength($length);
+
+        // the words are stored as key, which is faster.
+        foreach ($wordList as $word => $value) {
+            if (strlen($word) != $length) {
+                $this->assertTrue(
+                    false, "'$word' is not $length characters long."
+                );
+            }
+        }
+    }
 }
