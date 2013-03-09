@@ -17,7 +17,6 @@ use JelmerSnoeck\KataEight\Readable\Processor;
  *
  * @author Jelmer Snoeck <jelmer@siphoc.com>
  */
-
 class ProcessorTest extends \PHPUnit_Framework_TestCase
 {
     protected $wordListFile;
