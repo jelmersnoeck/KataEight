@@ -20,8 +20,16 @@ use JelmerSnoeck\KataEight\Fast\Processor;
 
 class ProcessorTest extends \PHPUnit_Framework_TestCase
 {
-    public function test_it_setups()
+    protected $wordListFile;
+
+    public function setUp()
     {
-        new Processor();
+        $this->wordListFile = __DIR__ . '/../Fixtures/testlist';
+    }
+
+    public function test_it_stores_wordlist_file()
+    {
+        $processor = new Processor($this->wordListFile);
+        $this->assertSame($this->wordListFile, $processor->getWordListFile());
     }
 }

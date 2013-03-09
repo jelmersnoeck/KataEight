@@ -17,4 +17,30 @@ namespace JelmerSnoeck\KataEight\Fast;
  */
 class Processor
 {
+    /**
+     * The file we'll be using to process the data.
+     *
+     * @var string
+     */
+    protected $wordListFile;
+
+    /**
+     * Initiate the processor with the file to process.
+     *
+     * @param string $wordListFile
+     */
+    public function __construct($wordListFile)
+    {
+        $this->wordListFile = (string) $wordListFile;
+    }
+
+    /**
+     * Retrieve the file we're using to process the data.
+     *
+     * @return string
+     */
+    public function getWordListFile()
+    {
+        return $this->wordListFile;
+    }
 }
